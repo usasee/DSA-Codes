@@ -1,0 +1,87 @@
+PROGRAM OF SINGLE LINKED LIST ***********/
+/*************** INSERTION (ANY POSITION) **************/
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+typedef struct link
+{
+int info;
+struct link *next;
+}node;
+void main()
+{
+node *head;
+void create(node *);
+node * insert(node *);
+void show(node *);
+clrscr();
+head=(node *)malloc(sizeof(node));
+printf("\n\t CREATE LINKED LIST.\n");
+create(head);
+printf("\n\t DISPLAY LINKED LIST.\n\n");
+show(head);
+printf("\n\n\tINSERTION.");
+head=insert(head);
+show(head);
+getch();
+}
+void create(node *temp)
+{
+char ans;
+printf("\nEnter the info::");
+scanf("%d",&temp->info);
+temp->next=NULL;
+printf("\nWant another?");
+fflush(stdin);
+ans=getchar();
+if(ans!='y')
+return;
+else
+{
+temp->next=(node *)malloc(sizeof(node));
+create(temp->next);
+}
+}
+void show(node *temp)
+{
+if(temp->next==NULL)
+printf("%4d",temp->info);
+else
+{
+printf("%4d",temp->info);
+show(temp->next);
+}
+}
+node * insert(node *temp)
+{
+node *first,*list,*p;
+int pos,i;
+first=temp;
+printf("\nEnter the position::");
+scanf("%d",&pos);
+if(pos>1)
+{
+for(i=1;i<pos-1;i++)
+temp=temp->next;
+}
+list=(node *)malloc(sizeof(node));
+printf("\nEnter the info::");
+scanf("%d",&list->info);
+if(temp->next==NULL)
+{
+temp->next=list;
+list->next=NULL;
+}
+else if(temp==first && pos!=2)
+{
+list->next=temp;
+first=list;
+}
+else
+{
+p=temp->next;
+temp->next=list;
+list->next=p;
+}
+return(first);
+}
