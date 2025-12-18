@@ -1,0 +1,26 @@
+/********* PROGRAM OF TOWER OF HANOI USING RECURSION. *********/
+/********************************************************************/
+/*************************** SUBHAS NATH **************************/
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+int no;
+char left='L',mid='M',right='R';
+void t_hanoi(int,char,char,char);
+clrscr();
+printf("\nEnter the number of disks:- ");
+scanf("%d",&no);
+t_hanoi(no,left,mid,right);
+printf("\n\n");
+getch();
+}
+void t_hanoi(int n,char l,char m,char r)
+{
+if(n!=0)
+{
+t_hanoi(n-1,l,r,m);
+printf("\nMove disk %d from %c to %c",n,l,r);
+t_hanoi(n-1,m,l,r);
+}
+}
